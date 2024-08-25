@@ -26,6 +26,10 @@ def about(request):
     #return HttpResponse('<h1>Welcome to About page</h1>')
     return render(request, 'about.html')
 
+def signup(request):
+    email = request.GET.get('email')
+    return render(request, 'signup.html', {'email': email})
+
 def statistics_view(request):
     matplotlib.use('Agg')
     years = Movie.objects.values_list('year', flat=True).distinct().order_by('year') # Obtiene todos los años de las películas
@@ -102,4 +106,5 @@ def statistics_view(request):
     graphic2 = graphic2.decode('utf-8')
 
     return render(request, 'statistics.html', {'graphic': graphic, 'graphic2': graphic2})
+    
     
